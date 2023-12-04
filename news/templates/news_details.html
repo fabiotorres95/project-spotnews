@@ -1,0 +1,30 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Detalhes da Notícia</title>
+    {% load static %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
+</head>
+<body>
+    <header class='header'>
+        <ul class='header-links'>
+            <li><a href="{% url 'home-page' %}">Home</a></li>
+        </ul>
+    </header>
+
+    <h1 class="news-title">{{ title }}</h1>
+    <p class="news-content">{{ content }}</p>
+    {% for category in categories.all %}
+        <span class="news-categories">{{ category.name }}</span>
+    {% endfor %}
+    <span class="news-author">{{ author }}</span>  
+    <span class="news-date">{{ created_at }}</span>
+    <img src="/static/{{ image }}" alt="Imagem da notícia">
+    
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

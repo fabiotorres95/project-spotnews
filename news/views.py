@@ -24,3 +24,20 @@ def index(request):
     }
 
     return render(request, 'home.html', data)
+
+
+def details(request, id):
+    news_data = News.objects.get(id=id)
+    parts = str(news_data.created_at).split('-')
+    converted = f"{parts[2]}/{parts[1]}/{parts[0]}"
+
+    news = {
+        "title": news_data.title,
+        "content": news_data.content,
+        "author": news_data.author,
+        "created_at": converted,
+        "image": news_data.image,
+        "categories": news_data.categories
+    }
+
+    return render(request, 'news_details.html', news)
