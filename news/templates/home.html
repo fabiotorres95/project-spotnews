@@ -2,8 +2,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Primeiro Template</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Página Inicial</title>
+    {% load static %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
 </head>
 <body>
     <h1>Página Inicial</h1>
@@ -14,10 +17,11 @@
         </ul>
     </header>
 
-    {% for title in news_titles %}
-        <h2>{{ title }}</h2>
+    {% for news in news_list %}
+        <h2 class="news-title">{{ news.title }}</h2>
+        <span class="news-date">{{ news.created_at }}</span>
+        <img src="/static/img/{{ news.image }}" alt="Imagem da notícia">
     {% endfor %}
-
     
     {% block content %}
     {% endblock %}
