@@ -20,7 +20,7 @@
     {% for news in news_list %}
         <h2 class="news-title">{{ news.title }}</h2>
         <span class="news-date">{{ news.created_at }}</span>
-        <img src="/static/img/{{ news.image }}" alt="Imagem da notícia">
+        <img src="/static/{{ news.image }}" alt="Imagem da notícia">
     {% endfor %}
     
     {% block content %}
