@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from news.models import News
+from news.forms import CategoriesForm
 
 
 def index(request):
@@ -41,3 +42,11 @@ def details(request, id):
     }
 
     return render(request, 'news_details.html', news)
+
+
+def categories(request):
+    form = CategoriesForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('home-page', )
+    return render(request, 'categories_form.html', {'form': form})
