@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário para Nova Categoria</title>
+    <title>Formulário para Nova Notícia</title>
     {% load static %}
     {% block css %}
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -17,15 +17,18 @@
         <ul class='header-links'>
             <li><a href="{% url 'home-page' %}">Home</a></li>
             <li><a href="{% url 'categories-form' %}">Cadastrar Categorias</a></li>
+            <li><a href="{% url 'news-form' %}">Cadastrar Notícias</a></li>
         </ul>
     </header>
 
-    <h1>Formulário para Nova Categoria</h1>
+    <h1>Formulário para Nova Notícia</h1>
 
-    <form method="post", action="{% url 'categories-form'%}">
+    <form method="post" action="{% url 'news-form' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         {% for category in categories%}
+        <input type="checkbox" name="categories" value="{{ category.id }}">{{ category.name }}<br>
+        {% endfor %}
         <button type="submit">Salvar</button>
     </form>
 </body>
