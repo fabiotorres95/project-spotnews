@@ -26,8 +26,13 @@
     <form method="post" action="{% url 'news-form' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        {% for category in categories%}
-        <input type="checkbox" name="categories" value="{{ category.id }}">{{ category.name }}<br>
+        {% for category in categories %}
+            <label for="id_categories_{{ category.id }}">{{ category.name }}</label>
+            <input type="checkbox" name="categories" 
+                value="{{ category.id }}"
+                id="id_categories_{{ category.id }}"
+            >
+            <br>
         {% endfor %}
         <button type="submit">Salvar</button>
     </form>

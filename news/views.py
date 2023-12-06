@@ -48,16 +48,20 @@ def categories(request):
     form = CategoriesForm(request.POST or None)
     if form.is_valid():
         form.save()
-        return redirect('home-page', )
+        return redirect('home-page')
     return render(request, 'categories_form.html', {'form': form})
 
 
 def news_view(request):
-    form = NewsForm(request.POST or None)
+    form = NewsForm()
+    if request.method == 'POST':
+        form = NewsForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect('home-page')
+
     categories = Category.objects.all()
-    if form.is_valid():
-        form.save()
-        return redirect('home-page', )
     data = {
         'form': form,
         'categories': categories,

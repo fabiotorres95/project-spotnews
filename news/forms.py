@@ -15,10 +15,14 @@ class CategoriesForm(forms.Form):
 
 class NewsForm(forms.Form):
     title = forms.CharField(label='Título')
-    content = forms.CharField(label='Conteúdo')
-    author = forms.ModelChoiceField(queryset=User.objects.all())
-    created_at = forms.DateField(label='Data de criação')
-    image = forms.ImageField(label='Imagem')
+    content = forms.CharField(label='Conteúdo', widget=forms.Textarea)
+    author = forms.ModelChoiceField(
+        label="Autoria",
+        queryset=User.objects.all())
+    created_at = forms.DateField(
+        label='Criado em',
+        widget=forms.DateInput(attrs={'type': 'date'}))
+    image = forms.ImageField(label='URL da Imagem')
 
     def save(self):
         data = self.cleaned_data
