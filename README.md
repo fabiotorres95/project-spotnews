@@ -8,3 +8,6 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 -->
+Projeto SpotNews - Trybe eletiva Python seção 5: "Django I"
+
+Python - projeto 5 de 6
